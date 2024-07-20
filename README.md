@@ -16,10 +16,12 @@ This guide will walk you through creating a Kubernetes cluster with kubeadm usin
 
 3. **Connect:**
     - Use Git Bash or PuTTY to connect to each instance separately.
+  
+
+**Execute the following commands from step 2 to step 13 on both (worker and master nodes) instances:**
+
 
 ## Step 2: Update the System
-
-Execute the following commands on both instances:
 
 ```bash
 sudo apt update -y
@@ -124,7 +126,6 @@ Switch to the root user:
 ```bash
 sudo su -
 ```
-
 ### Step 15: Initiate Kubeadm
 
 Initiate `kubeadm`:
@@ -132,10 +133,9 @@ Initiate `kubeadm`:
 ```bash
 kubeadm init
 ```
-
 **Note:** Copy the commands from the output of `kubeadm init` and save them for later use.
 
-![kubeadm init output](https://path/to/your/screenshot1.png)
+![Kubernetes-op](https://github.com/user-attachments/assets/b163ef3e-ebd9-4cd8-acf3-b28754e9a374)
 
 ### Step 16: Set Up the Kubernetes Configuration
 
@@ -147,7 +147,6 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 export KUBECONFIG=/etc/kubernetes/admin.conf
 ```
-
 ### Step 17: Check for Nodes
 
 Check the status of the nodes:
@@ -155,9 +154,6 @@ Check the status of the nodes:
 ```bash
 kubectl get nodes
 ```
-
-![kubectl get nodes output](https://path/to/your/screenshot2.png)
-
 The master node will be listed but not yet ready.
 
 ### Step 18: Install Weave Net for Network Management
@@ -173,9 +169,6 @@ Check the node status again:
 ```bash
 kubectl get nodes
 ```
-
-![kubectl get nodes ready](https://path/to/your/screenshot3.png)
-
 The master node should now be ready.
 
 ## Step 19: Join the Worker Node to the Master Node
@@ -192,6 +185,11 @@ Example command:
 kubeadm join 172.31.35.7:6443 --token xpde3j.7gbygg43kga40a2y --discovery-token-ca-cert-hash sha256:03395fdadf51861ed6df8d95d0dcc48b27a220089f6f927fbac3267d0d7438b7
 ```
 
+Here is a screenshot of expected output
+
+![kube-op2](https://github.com/user-attachments/assets/27d228c2-eba5-4c79-9bdf-c1526bf81b40)
+
+
 ### Verify the Cluster
 
 On the Master Node, verify that the Worker Node has joined:
@@ -199,8 +197,7 @@ On the Master Node, verify that the Worker Node has joined:
 ```bash
 kubectl get nodes
 ```
-
-![kubectl get nodes final](https://path/to/your/screenshot4.png)
+![step19-2](https://github.com/user-attachments/assets/2e69f3d9-aa94-4737-9612-8fb00b456af6)
 
 You should see both the Master Node and Worker Node listed as ready.
 
