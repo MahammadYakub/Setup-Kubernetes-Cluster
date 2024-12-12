@@ -161,7 +161,7 @@ The master node will be listed but not yet ready.
 Apply the Weave Net DaemonSet for Kubernetes networking:
 
 ```bash
-kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+kubectl apply -f kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
 ```
 
 Check the node status again:
